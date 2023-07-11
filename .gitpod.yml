@@ -4,7 +4,7 @@ image: gitpod/workspace-postgres
 
 tasks:
   - init: |
-      yarn create redwood-app . --yarn-install --typescript --git-init=false
+      yarn create redwood-app . --overwrite --yarn-install --typescript --git-init=false
       node gitpod-setup.js
     command: yarn rw dev --fwd="--client-web-socket-url=ws$(gp url 8910 | cut -c 5-)/ws"
 

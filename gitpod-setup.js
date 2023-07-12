@@ -47,4 +47,4 @@ fs.readFile('.gitpod.yml', 'utf8', (err, data) => {
     }
     console.log('.gitpod.yml file updated successfully!')
   })
-}
+});

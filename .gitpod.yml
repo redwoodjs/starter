@@ -4,9 +4,29 @@ image: gitpod/workspace-postgres
 
 tasks:
   - init: |
-      yarn create redwood-app . --overwrite --yarn-install --typescript --git-init=false
-      node gitpod-setup.js
-  - command: yarn rw dev --fwd="--client-web-socket-url=ws$(gp url 8910 | cut -c 5-)/ws"
+      # Cleanup terminal
+      printf "\033[3J\033c\033[3J"
+
+      # Auto init a redwoodjs project for Gitpod if missing
+      if test ! -e redwood.toml; then {
+        # Create
+        yarn create redwood-app . --overwrite --yarn-install --typescript --git-init=false
+
+        # Custom webpack config for Gitpod
+        yarn rw setup webpack
+        wp_config_file="web/config/webpack.config.js"
+        if ! grep -q "GITPOD_REPO_ROOT" "${wp_config_file}" 2>/dev/null; then {
+          sed -i "s|if (mode === 'development') {|& \n\t\tif (process.env.GITPOD_REPO_ROOT) { config.devServer.client.webSocketURL = require('child_process').execSync(\`gp url \${config.devServer.port}\`).toString().trim().replace('https', 'wss').concat('/ws') }|" "${wp_config_file}"
+        } fi
+
+        # Change the default `sqlite` datasource provider to `postgres`
+        sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"
+      } fi
+
+    command: |
+      cmd="yarn rw dev"
+      printf "Executing '%s' ..." "${cmd}"
+      ${cmd}
 
 ports:
   - port: 5432
@@ -14,7 +34,7 @@ ports:
     onOpen: ignore
   - port: 8910
     name: RedwoodJS web application
-    onOpen: open-browser
+    onOpen: notify # because we already have [browser].open = true in redwood.toml
   - port: 8911
     name: Serverless functions
     onOpen: ignore

@@ -23,6 +23,10 @@ tasks:
         sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"
       } fi
 
+      if test -e redwood.toml; then {
+        yarn install
+      } fi
+
     command: |
       cmd="yarn rw dev"
       printf "Executing '%s' ..." "${cmd}"

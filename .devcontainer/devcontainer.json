@@ -1,0 +1,29 @@
+{
+	"name": "RedwoosJS & PostgreSQL",
+  "dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// This can be used to network with other containers or with the host.
+	"forwardPorts": [ 8910, 8911, 5432, 5555 ],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "bash scripts/setup.sh",
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"ofhumanbondage.react-proptypes-intellisense",
+				"mgmcdermott.vscode-language-babel",
+				"editorconfig.editorconfig",
+				"prisma.prisma",
+				"graphql.vscode-graphql"
+			]
+		}
+	},
+	"remoteUser": "node"
+}

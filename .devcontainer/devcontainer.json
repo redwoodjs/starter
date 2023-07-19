@@ -10,7 +10,6 @@
 	"forwardPorts": [ 8910, 8911, 5432, 5555 ],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "bash scripts/setup.sh",
-	"postStartCommand": "yarn rw dev",
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.

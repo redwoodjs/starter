@@ -1,4 +1,4 @@
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ahaywood/redwood-starter)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/from-referrer/)
 
 # RedwoodJS GitPod Starter
 
@@ -44,17 +44,17 @@ You can click on the address or the globe icon to open that particular port in a
 - Port 8911 is your backend and will show you a list of all available functions. If you add `/graphql` to the end of the URL, you should see the GraphQL Playground
   ![GraphQL Playground on GitPod](images/gitpod-graphql.png)
 
-## Restarting the Workspace
-
-If you need to restart the dev server, you can't just run `yarn rw dev`, you'll run into an "Invalid Host File" error.
-
-Since we’re running in a cloud workspace, URLs like `localhost:3000` should be converted to something like `3000-abc-123.ws-eu0.gitpod.io.` ([Additional documentation](https://www.gitpod.io/guides/gitpodify#invalid-host-header).)
-
-The following command allows us to forward the `--client-web-socket-url` to the GitPod URL.
-
-```bash
-yarn rw dev --fwd="--client-web-socket-url=ws$(gp url 8910 | cut -c 5-)/ws"
-```
+<!-- ## Restarting the Workspace -->
+<!---->
+<!-- If you need to restart the dev server, you can't just run `yarn rw dev`, you'll run into an "Invalid Host File" error. -->
+<!---->
+<!-- Since we’re running in a cloud workspace, URLs like `localhost:3000` should be converted to something like `3000-abc-123.ws-eu0.gitpod.io.` ([Additional documentation](https://www.gitpod.io/guides/gitpodify#invalid-host-header).) -->
+<!---->
+<!-- The following command allows us to forward the `--client-web-socket-url` to the GitPod URL. -->
+<!---->
+<!-- ```bash -->
+<!-- yarn rw dev --fwd="--client-web-socket-url=ws$(gp url 8910 | cut -c 5-)/ws" -->
+<!-- ``` -->
 
 # The Starting Files, within this Repository
 
@@ -89,7 +89,3 @@ DATABASE_URL=""
 TEST_DATABASE_URL=""
 PRISMA_HIDE_UPDATE_MESSAGE=""
 ```
-
-## gitpod-setup.js
-
-This is a custom script that goes into the `app/db/prisma.schema` and changes the default SQLite database to a Postgres database.

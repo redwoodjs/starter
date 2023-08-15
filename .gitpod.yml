@@ -12,15 +12,12 @@ tasks:
         # Create
         yarn create redwood-app . --overwrite --yarn-install --typescript --git-init=false
 
-        # Custom webpack config for Gitpod
-        yarn rw setup webpack
-        wp_config_file="web/config/webpack.config.js"
-        if ! grep -q "GITPOD_REPO_ROOT" "${wp_config_file}" 2>/dev/null; then {
-          sed -i "s|if (mode === 'development') {|& \n\t\tif (process.env.GITPOD_REPO_ROOT) { config.devServer.client.webSocketURL = require('child_process').execSync(\`gp url \${config.devServer.port}\`).toString().trim().replace('https', 'wss').concat('/ws') }|" "${wp_config_file}"
-        } fi
-
         # Change the default `sqlite` datasource provider to `postgres`
         sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"
+      } fi
+
+      if test -e redwood.toml; then {
+        yarn install
       } fi
 
     command: |

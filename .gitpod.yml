@@ -24,6 +24,7 @@ tasks:
       } fi
 
     command: |
+      cmd="yarn install"
       cmd="yarn rw dev"
       printf "Executing '%s' ..." "${cmd}"
       ${cmd}

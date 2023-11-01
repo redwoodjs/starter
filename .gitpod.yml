@@ -7,6 +7,9 @@ tasks:
       # Cleanup terminal
       printf "\033[3J\033c\033[3J"
 
+      nvm install 18.16.0
+      nvm use 18.16.0
+
       # Auto init a redwoodjs project for Gitpod if missing
       if test ! -e redwood.toml; then {
         # Create
@@ -14,14 +17,11 @@ tasks:
 
         # Change the default `sqlite` datasource provider to `postgres`
         sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"
-      } fi
-
-      if test -e redwood.toml; then {
+      } else {
         yarn install
       } fi
 
     command: |
-      cmd="yarn install"
       cmd="yarn rw dev"
       printf "Executing '%s' ..." "${cmd}"
       ${cmd}

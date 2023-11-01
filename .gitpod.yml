@@ -13,7 +13,7 @@ tasks:
       # Auto init a redwoodjs project for Gitpod if missing
       if test ! -e redwood.toml; then {
         # Create
-        yarn create redwood-app . --yes
+        yarn create redwood-app . --overwrite --yes
 
         # Change the default `sqlite` datasource provider to `postgres`
         sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"

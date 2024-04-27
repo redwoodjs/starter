@@ -9,6 +9,7 @@ tasks:
 
       nvm install 20.12.2
       nvm use 20.12.2
+      corepack enable
 
       # Auto init a redwoodjs project for Gitpod if missing
       if test ! -e redwood.toml; then {

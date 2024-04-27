@@ -18,6 +18,8 @@ tasks:
 
         # Change the default `sqlite` datasource provider to `postgres`
         sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"
+
+        yarn install 
       } else {
         yarn install
       } fi

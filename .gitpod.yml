@@ -11,19 +11,19 @@ tasks:
       nvm use 20.15.1
 
       corepack enable
-      COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn
+      corepack prepare yarn@stable --activate
 
       # Auto init a redwoodjs project for Gitpod if missing
       if test ! -e redwood.toml; then {
         # Create
-        yarn create redwood-app . --overwrite --yes
+        COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn create redwood-app . --overwrite --yes
 
         # Change the default `sqlite` datasource provider to `postgres`
         sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"
      
         yarn install
       } else {
-        yarn install
+        COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn install
       } fi
 
     command: |

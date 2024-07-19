@@ -20,8 +20,6 @@ tasks:
 
         # Change the default `sqlite` datasource provider to `postgres`
         sed -i 's|provider = "sqlite"|provider = "postgres"|' "api/db/schema.prisma"
-     
-        yarn install
       } else {
         COREPACK_ENABLE_DOWNLOAD_PROMPT=0 corepack yarn install
       } fi
